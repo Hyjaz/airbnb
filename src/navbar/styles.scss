@@ -1,0 +1,20 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  .nav-items {
+    flex: 1;
+    flex-basis: 50%;
+    align-items: center;
+    a {
+      text-decoration: none;
+      text-transform: uppercase;
+      padding-right: 2%;
+    }
+  }
+}
+
+.logo {
+  flex: 1;
+  width: 30%;
+  height: 10%;
+}

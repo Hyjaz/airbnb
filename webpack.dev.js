@@ -1,18 +1,12 @@
 const configPaths = require('./config.path');
+const common = require('./webpack.common');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const merge = require('webpack-merge');
 const webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
+module.exports = merge({
   mode: 'development',
   devtool: 'inline-source-map',
-  entry:  configPaths.entry,
-  output: {
-    filename: 'bundle.js',
-    path: configPaths.output
-  },
-  resolve: {
-    extensions: ['.js', '.ts', '.tsx', '.css']
-  },
   devServer: {
     contentBase: false,
     compress: true,
@@ -21,12 +15,13 @@ module.exports = {
     overlay: {
       warnings: true,
       errors: true
-    }
+    },
+    open: true,
   },
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /.*\.tsx$/,
         use: [
           {
             loader: 'awesome-typescript-loader',
@@ -49,4 +44,4 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
   ]
-}
+}, common)
